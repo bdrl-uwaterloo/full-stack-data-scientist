@@ -1,0 +1,191 @@
+This case study covers a medical problem - pneumonia detection. 
+
+Prerequisite - Environment Setup
+=================
+We encourage readers to set up a virtual environment for this case study.
+[TODO: walk through creating a conda virtual enviornment, installing necessary modules. You give reference to Chris' python tutorial]
+[NOTE to Ruihan: modules used are: keras, numpy, tensorflow, flask]
+
+Project Structure
+==================
+[TODO: add project structure here and explain each folder and files]
+data/ (the git repo does not include this. you need to create this folder first and put the training data here)
+    test/
+    train/
+    val/
+model/
+static/ (the git repo does not include this. need to craete this folder and subfolder first. )
+    x-ray/
+templates/
+    index.html
+model.py
+server.py
+
+Run the project[TODO: need to add screenshots for every step]
+==========
+1. train the model: run model.py, after the model is trained, the trained model will be saved into the model directory
+2. after the model is trained and automatically saved to the model/ directory, run server.py and your server will be running
+3. open browser, go to 'http://127.0.0.1:5000/' and start using the simple web application
+4. to stop the server, simply stop the running of server.py in step 2. 
+
+Problem Definition
+==================
+The problem definition is fairly straightforward: given labeled x-ray images, build a classificaiton system, which takes unseen chest x-ray and then classify whether the x-ray is normal and shows signs of pneumonia. 
+
+Data Collection and cleaning
+==================
+The input data for this case study would be chest x-ray images. These images can be collected from an X-Ray imaging center with labels provided by doctors. For this case study, we use data provided at https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia/download 
+
+The images have already been cleaned, all images are valid x-ray images. In real life, you have to make sure to go over images provided by the imaging center to remove invalid ones.  
+
+Feature extraction
+==================
+In the old days, for image classificaiton problems, a lot of hand crafted features are used [TODO: research and list these features] and then fed to a classificaiton model. 
+
+With the pupularity of deep nueral networks especially CNNs, feature extration is embeded in the network itself, namely the convolutional layer, and max pooling layer, which will be briefly introduced in the following section
+
+Modeling
+==================
+As mentioned above, the model we will use here is called Convolutional Neural Networks, or CNN for short. Before we dive into building the CNN structure for our classification task, we would like to introduce CNN first.
+
+[TODO: introduce CNN here, including history, and intuition behind it: convolutional layer, pooling layer]
+
+Now you have a baisc understanding on what a CNN can do, let us see how we can use it to build our chest-xray classifier. The classifier logic will contain a training step and an evaluation step and we will use Python classes((for detailed introduction on pyhton class, refer to TODO: add Chris' python class reference here) to wrap them: we will define a chest_xray_classifier_trainer class for the training step and a chest_xray_classifier_evaluator class for the evaluator. There are some common attributes that will be used by both chest_xray_classifier_trainer and chest_xray_classifier_evaluator so it is a good idea for them to have a common base class as well. We call this base class chest_xray_classifier. The three classes are all defined in model.py.
+[TODO: draw a class hierachy diagram here]
+                    chest_xray_classifier
+                            |
+                            |
+                         /       \
+chest_xray_classifier_trainer   chest_xray_classifier_evaluator
+
+[NOTE for Ruihan: for the following sections, you can refer to https://machinelearningmastery.com/how-to-load-convert-and-save-images-with-the-keras-api/ for an example on how to explain code.]
+
+The base class definition is as follows. It defines some basic attributes for our model. These attributes are the width and height of the image that will be fed into the CNN, the path where we will save the model and the labels.  We have lots of images for training, and we will also have new images to evaluate when the model is built. All these images may come from different sources and they might have different width and height. For example, the image train/NORMAL/IM-0149-0001.jpeg has a width of 1542 pixels and a height of 1152 pixels; another image train/PNEUMONIA/person4_bacteria_14.jpeg has a width of 1032 pixels and width of 592 pixels. To make sure we operate on same size, we will rescale all images to the width and height defined here. A bigger width and height value retains more information in the original image thus makes the model more accurate but at a cost of more training time. Smaller values means fewer data to be processed but at the cost of lost information in the original image. We encourgae the readers to choose different values here to see the difference in model training time and model accuracy.    
+[TODO: insert the chest_xray_classifier definition here. It is not a lot of code, so we can include the whole class here]
+
+Then we define another class called chest_xray_classifier_trainer
+In the constructor __init__ function, in addition to calling the base class' __init__ to initialize attributes defined in the base class, the training and test data directories, training epoch, batch size are also defined. [TODO: briefly introduce epoch, batch size here. also need to refere to the Rachel's ML section for epoch, batch size.]
+
+[TODO: insert the __init__ function here]
+
+We need to calculate the number of images for our traning dataset and verification dataset, we write a helper function here called get_number_of_files, which will calculate the number of files under a directory and its subdirectories. 
+
+[TODO: insert the get_number_of_files function here]
+
+Now with all the necessary parameters ready, let us define the CNN model. [TODO: describe the model structure and the use of ImageDataGenerator to augment training data]
+[TODO: insert the train_cnn function here]
+
+The network structure is shown in the following table. We can see this network has a total of 1167845 parameters. [NOTE for Ruihan: this table is the output of the model.summary() call]
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv2d_1 (Conv2D)            (None, 159, 159, 32)      160       
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 79, 79, 32)        0         
+_________________________________________________________________
+conv2d_2 (Conv2D)            (None, 78, 78, 32)        4128      
+_________________________________________________________________
+max_pooling2d_2 (MaxPooling2 (None, 39, 39, 32)        0         
+_________________________________________________________________
+conv2d_3 (Conv2D)            (None, 38, 38, 64)        8256      
+_________________________________________________________________
+max_pooling2d_3 (MaxPooling2 (None, 19, 19, 64)        0         
+_________________________________________________________________
+flatten_1 (Flatten)          (None, 23104)             0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 50)                1155250   
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 50)                0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 1)                 51        
+=================================================================
+Total params: 1,167,845
+Trainable params: 1,167,845
+Non-trainable params: 0
+[TODO: add training result here]
+
+The output of the last two epoches is shown below. We can see that on the training set, the CNN reaches an accuracy of 93.63% and on the verification set, it has an accuracy of 90.87%. The verification accuracy is lower than that of the training set, meaning we have a slight overfitting. We encourage the readers to tune the parameters of the network to reduce the overfitting as much as possible. Possible approaches include reduce the complexity of the CNN, adjust regularization parameters, and adjust drop out layer parameters. 
+[TODO: put the following output in code format]
+Epoch 29/30
+163/163 [==============================] - 144s 886ms/step - loss: 0.2027 - acc: 0.9327 - val_loss: 0.3170 - val_acc: 0.9071
+Epoch 30/30
+163/163 [==============================] - 149s 915ms/step - loss: 0.1964 - acc: 0.9363 - val_loss: 0.3252 - val_acc: 0.9087
+
+With this very simple CNN setup, we could achieve a verification accuracy of more than 90%. This demonstrates CNN's power on understanding high level meaning presented in images. As a comparison, we also implement a baic feed forward nerual network (also referred to as multi layer perceptron, MLP for short) to see how it performs on image classificaiton task. We construct the network in such a way that it has roughly the same amount of parameters as the previous CNN to make a more meaningful comparison.
+[TODO: insert the train_feedforward function here]
+
+The network structure is shown in the following table. We can see this network has a total of 1179327 parameters. [NOTE: this table is the output of the model.summary() call] [TODO: put the following output in code format]
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_1 (Flatten)          (None, 25600)             0         
+_________________________________________________________________
+dense_1 (Dense)              (None, 46)                1177646   
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 46)                0         
+_________________________________________________________________
+dense_2 (Dense)              (None, 35)                1645      
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 35)                0         
+_________________________________________________________________
+dense_3 (Dense)              (None, 1)                 36        
+=================================================================
+Total params: 1,179,327
+Trainable params: 1,179,327
+Non-trainable params: 0
+
+The output of the last two epoches is shown below. We can see that on the training set, the feedforward network reaches an accuracy of 74.54% and on the verification set, it has an accuracy of 62.50%. With the same number of iterations and roughly same amount of parameters, this network is heavily overfitting the training data yet it has a much lower accuracy on the verification dataset. This means that this netowrk is not able to pick up the most important features to differentiate normal and pneumonia. This again demonstrates that CNN is more suitable for image classification problems. 
+[TODO: put the following output in code format]
+Epoch 29/30
+164/164 [==============================] - 89s 542ms/step - loss: 0.5707 - acc: 0.7450 - val_loss: 0.6933 - val_acc: 0.6250
+Epoch 30/30
+164/164 [==============================] - 91s 554ms/step - loss: 0.5706 - acc: 0.7454 - val_loss: 0.6947 - val_acc: 0.6250
+
+Now that we have trained our model and are satisfied with the model performance. We can go ahead to implement the chest_xray_classifier_evaluator class. In the __init__ function, we load the keras model if it is already trained. 
+[TODO: insert __init__ function here]
+
+Then we define an evaluate function, which takes the path to the image as input, loads the image, prepare the appropriate data structure and feed the data to the model, which would give us the predicted class. Finally we return the human readable label. 
+[TODO: insert the evaluate function here]
+
+API integration and User Interface
+===============
+Now we have the model ready, we can now build a small browser based application including a webpage, where users can upload an chest X-ray image and get results on whether this images show a normal chest or pneumonia.
+
+We use flask as the simple web server, which would serve the web pages, process the uploaded x-ray pictures and return back result. This simple application is not great in looking, but it servers the purpose of demonstrating the basic building blocks that we need. 
+
+Flask is a python module that provides web-server related capabilities. Let us dive into the code direclty. 
+
+First we import the necessary modules, create the Flask app, configure file upload-related variables and instantiate our chest_xray_classifier_evaluator
+[TODO: insert section1 from server.py]
+
+Then we define a function which will be called when the Flask server receives a request to '/'. '/' means the root of the application. If the request is a GET, it means the user accesss the web page from the browser. In this case, we simply return the webpage to the user. [TODO: need to let Chris add Flask tutorial, and referet to the template part]. If the request is a POST, it means the user submits an image. We check the validity of the iamge, and then we save the file and in the end we call our model to predict the result. Pretty straightforward. 
+[TODO: insert section2 from server.py]
+
+In the end we want to call app.run() to start the flask server we run the server.py script direclty. [TODO: reference Chris' python tutorial part for running python script directly]
+[TODO: insert section3 from server.py]
+
+
+
+
+=======June 23 Update========
+files changed:
+    model.py: 
+        added a command line argument so when run this file, user can specify which network to train. By default, the CNN will be trained.  so the following two commands will both train a CNN model:
+            python model.py
+            python model.py cnn
+        the following command will train a feedforward model(note that this feeedforward model is not for use in the application, just to serve as a comparison to the CNN model):
+            python model.py feedforward
+
+        ****make sure when you copy/paste code, do it again using this updated file.
+        
+    model/model_cnn.h5:
+        this file is updated as well as I re-trained the model using tensorflow 2.x
+files added:
+    requirements.txt: containes all the necessary modules for this project. use pip install -r requirements.txt to intall, see below.
+
+to create a runnable enveionrment(on MacOS, if you are on windows, the command maybe slightly different):
+conda create --name chestxray --python=3.7
+conda activate chestxray
+pip install -r requirements.txt
+
+now you will have everthing installed. 

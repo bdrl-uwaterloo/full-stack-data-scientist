@@ -1,0 +1,200 @@
+﻿Age,Status,Edcation level,Travel?,Close contact,Dry Cough,Sex,COVID_19?,Temperature
+44,Canadian,University,TRUE,TRUE,FALSE,M,TRUE,36.28
+16,Non-Canadian,High School,TRUE,TRUE,TRUE,M,TRUE,35.89
+36,Canadian,University,TRUE,FALSE,TRUE,M,FALSE,36.94
+53,Canadian,Elementary,FALSE,TRUE,TRUE,F,TRUE,36.65
+11,Canadian,Elementary,FALSE,FALSE,TRUE,F,FALSE,38.5
+12,Non-Canadian,Elementary,FALSE,FALSE,TRUE,M,FALSE,38.49
+18,Canadian,University,FALSE,FALSE,FALSE,F,FALSE,40.29
+56,Non-Canadian,Elementary,TRUE,TRUE,FALSE,F,TRUE,39.56
+7,Canadian,Elementary,TRUE,TRUE,FALSE,M,FALSE,36.43
+16,Non-Canadian,High School,TRUE,FALSE,FALSE,M,FALSE,38.56
+49,Canadian,High School,FALSE,FALSE,TRUE,M,TRUE,37.3
+43,Canadian,High School,TRUE,FALSE,TRUE,F,TRUE,37.83
+15,Canadian,Elementary,FALSE,FALSE,FALSE,F,FALSE,39.26
+11,Non-Canadian,Elementary,TRUE,TRUE,FALSE,M,FALSE,39.51
+26,Canadian,University,FALSE,TRUE,FALSE,M,FALSE,35.92
+11,Non-Canadian,Elementary,FALSE,TRUE,TRUE,M,TRUE,35.85
+30,Canadian,University,TRUE,TRUE,TRUE,F,TRUE,36.08
+12,Canadian,Elementary,TRUE,TRUE,TRUE,F,TRUE,36
+32,Canadian,University,TRUE,FALSE,FALSE,M,FALSE,40.32
+51,Canadian,University,TRUE,FALSE,FALSE,M,TRUE,39.07
+53,Canadian,University,FALSE,FALSE,TRUE,F,TRUE,36.87
+39,Canadian,University,TRUE,FALSE,TRUE,M,TRUE,38.04
+25,Non-Canadian,University,TRUE,TRUE,FALSE,M,FALSE,37.97
+50,Canadian,High School,FALSE,FALSE,FALSE,F,FALSE,37.46
+10,Non-Canadian,Elementary,FALSE,FALSE,TRUE,M,FALSE,35.96
+5,Non-Canadian,Elementary,TRUE,TRUE,TRUE,M,TRUE,40.24
+69,Canadian,Elementary,FALSE,FALSE,FALSE,F,FALSE,39.37
+48,Canadian,High School,TRUE,TRUE,FALSE,F,TRUE,36.05
+24,Non-Canadian,High School,FALSE,FALSE,TRUE,F,FALSE,36.17
+4,Canadian,University,FALSE,TRUE,TRUE,M,TRUE,35.52
+7,Canadian,High School,FALSE,TRUE,FALSE,F,TRUE,35.43
+18,Non-Canadian,High School,TRUE,TRUE,TRUE,M,TRUE,35.32
+79,Canadian,Elementary,TRUE,FALSE,TRUE,F,TRUE,37.73
+31,Canadian,University,FALSE,FALSE,FALSE,F,TRUE,39.75
+40,Canadian,Elementary,FALSE,FALSE,FALSE,M,FALSE,37.92
+42,Canadian,High School,TRUE,FALSE,FALSE,M,FALSE,40.70
+36,Canadian,Elementary,FALSE,TRUE,FALSE,F,FALSE,40.55
+65,Canadian,Elementary,TRUE,FALSE,FALSE,M,TRUE,36.49
+63,Canadian,University,FALSE,TRUE,FALSE,M,FALSE,37.80
+57,Canadian,Elementary,FALSE,TRUE,TRUE,M,FALSE,38.55
+73,Canadian,High School,TRUE,FALSE,TRUE,F,TRUE,38.79
+23,Canadian,Elementary,TRUE,TRUE,FALSE,M,FALSE,40.34
+40,Canadian,High School,TRUE,TRUE,FALSE,M,TRUE,40.67
+80,Non-Canadian,Elementary,TRUE,FALSE,FALSE,F,FALSE,37.67
+22,Canadian,Elementary,TRUE,FALSE,TRUE,M,FALSE,36.79
+13,Non-Canadian,High School,FALSE,FALSE,TRUE,M,FALSE,35.75
+43,Canadian,Elementary,TRUE,FALSE,TRUE,M,TRUE,40.92
+62,Non-Canadian,Elementary,TRUE,TRUE,FALSE,M,FALSE,37.75
+37,Non-Canadian,University,FALSE,TRUE,TRUE,M,TRUE,40.53
+53,Non-Canadian,High School,TRUE,FALSE,FALSE,F,TRUE,39.70
+48,Canadian,University,TRUE,TRUE,TRUE,M,FALSE,36.47
+10,Canadian,Elementary,FALSE,TRUE,FALSE,M,TRUE,36.78
+63,Canadian,High School,FALSE,FALSE,TRUE,F,FALSE,36.97
+43,Canadian,High School,FALSE,FALSE,TRUE,M,FALSE,40.91
+66,Canadian,University,FALSE,TRUE,TRUE,F,TRUE,38.10
+11,Canadian,Elementary,TRUE,FALSE,FALSE,M,FALSE,38.29
+67,Canadian,High School,TRUE,FALSE,FALSE,M,TRUE,36.75
+59,Canadian,High School,FALSE,FALSE,TRUE,F,FALSE,37.13
+27,Canadian,High School,TRUE,FALSE,FALSE,F,TRUE,38.19
+76,Non-Canadian,Elementary,TRUE,TRUE,FALSE,F,TRUE,36.71
+6,Non-Canadian,High School,TRUE,FALSE,TRUE,M,FALSE,37.11
+6,Canadian,University,TRUE,FALSE,TRUE,M,TRUE,40.06
+6,Canadian,High School,TRUE,FALSE,TRUE,M,FALSE,37.92
+71,Canadian,High School,FALSE,FALSE,TRUE,F,TRUE,37.58
+73,Non-Canadian,University,FALSE,TRUE,TRUE,F,FALSE,39.21
+68,Non-Canadian,Elementary,TRUE,FALSE,TRUE,M,FALSE,35.33
+66,Canadian,Elementary,FALSE,TRUE,FALSE,M,TRUE,37.44
+33,Canadian,Elementary,TRUE,FALSE,TRUE,F,FALSE,35.54
+62,Canadian,High School,TRUE,FALSE,FALSE,F,FALSE,35.00
+4,Canadian,High School,FALSE,TRUE,FALSE,F,TRUE,37.10
+40,Canadian,Elementary,TRUE,TRUE,FALSE,M,FALSE,36.26
+10,Canadian,Elementary,TRUE,TRUE,FALSE,M,FALSE,35.96
+19,Canadian,High School,FALSE,FALSE,TRUE,M,TRUE,38.45
+39,Canadian,Elementary,TRUE,TRUE,TRUE,F,TRUE,38.85
+59,Canadian,Elementary,FALSE,TRUE,TRUE,F,FALSE,35.46
+7,Non-Canadian,Elementary,TRUE,FALSE,TRUE,M,TRUE,35.71
+41,Non-Canadian,Elementary,FALSE,FALSE,TRUE,M,TRUE,39.09
+31,Canadian,High School,FALSE,TRUE,TRUE,F,FALSE,37.14
+61,Non-Canadian,Elementary,TRUE,TRUE,TRUE,F,FALSE,37.69
+33,Non-Canadian,Elementary,FALSE,TRUE,TRUE,M,TRUE,40.16
+29,Non-Canadian,University,TRUE,FALSE,TRUE,F,FALSE,35.29
+24,Canadian,High School,TRUE,FALSE,FALSE,F,TRUE,39.57
+35,Canadian,Elementary,TRUE,FALSE,FALSE,M,FALSE,37.87
+37,Canadian,University,TRUE,FALSE,FALSE,M,FALSE,38.33
+54,Canadian,University,FALSE,FALSE,FALSE,F,FALSE,35.67
+7,Canadian,High School,TRUE,FALSE,FALSE,M,TRUE,37.41
+16,Canadian,University,TRUE,FALSE,FALSE,M,FALSE,35.37
+70,Canadian,High School,TRUE,TRUE,FALSE,M,TRUE,38.04
+60,Canadian,High School,TRUE,TRUE,FALSE,M,FALSE,36.18
+32,Canadian,Elementary,TRUE,FALSE,FALSE,M,FALSE,38.21
+53,Non-Canadian,University,TRUE,TRUE,FALSE,F,FALSE,39.04
+64,Non-Canadian,University,TRUE,TRUE,TRUE,F,FALSE,40.96
+61,Non-Canadian,High School,FALSE,TRUE,TRUE,F,TRUE,40.34
+66,Non-Canadian,High School,TRUE,TRUE,FALSE,F,TRUE,35.94
+28,Non-Canadian,University,FALSE,TRUE,TRUE,M,TRUE,37.11
+70,Non-Canadian,University,FALSE,TRUE,FALSE,M,FALSE,40.35
+64,Non-Canadian,Elementary,FALSE,FALSE,TRUE,M,FALSE,38.16
+23,Non-Canadian,Elementary,FALSE,TRUE,TRUE,F,FALSE,36.04
+75,Non-Canadian,University,TRUE,FALSE,FALSE,F,FALSE,40.76
+41,Canadian,University,FALSE,TRUE,TRUE,M,TRUE,40.28
+56,Canadian,University,TRUE,TRUE,FALSE,F,FALSE,40.57
+32,Canadian,University,TRUE,FALSE,FALSE,F,TRUE,36.25
+53,Non-Canadian,University,TRUE,TRUE,TRUE,F,FALSE,36.20
+39,Non-Canadian,University,FALSE,FALSE,FALSE,F,TRUE,36.14
+22,Non-Canadian,High School,TRUE,FALSE,FALSE,M,FALSE,38.88
+9,Canadian,High School,FALSE,FALSE,TRUE,F,TRUE,38.68
+10,Canadian,University,FALSE,TRUE,FALSE,M,FALSE,38.95
+75,Canadian,University,FALSE,TRUE,FALSE,F,TRUE,40.99
+74,Canadian,High School,TRUE,TRUE,FALSE,M,FALSE,37.35
+12,Canadian,University,TRUE,FALSE,FALSE,M,TRUE,37.59
+48,Canadian,University,FALSE,FALSE,TRUE,M,TRUE,36.87
+73,Canadian,Elementary,FALSE,TRUE,FALSE,F,FALSE,35.84
+37,Canadian,Elementary,FALSE,TRUE,TRUE,F,TRUE,35.59
+36,Canadian,University,TRUE,TRUE,TRUE,M,FALSE,40.37
+35,Canadian,University,TRUE,FALSE,TRUE,F,FALSE,40.66
+73,Canadian,High School,FALSE,TRUE,FALSE,F,TRUE,35.85
+55,Canadian,Elementary,FALSE,TRUE,FALSE,M,FALSE,37.67
+69,Canadian,High School,TRUE,TRUE,TRUE,F,TRUE,35.61
+15,Canadian,High School,TRUE,FALSE,FALSE,M,TRUE,36.30
+78,Canadian,Elementary,TRUE,TRUE,TRUE,F,FALSE,40.20
+65,Canadian,Elementary,FALSE,FALSE,TRUE,F,TRUE,39.38
+21,Canadian,High School,TRUE,FALSE,TRUE,M,FALSE,36.51
+40,Non-Canadian,University,FALSE,TRUE,FALSE,F,TRUE,40.53
+4,Non-Canadian,University,TRUE,FALSE,FALSE,M,TRUE,40.05
+29,Canadian,High School,FALSE,FALSE,TRUE,F,FALSE,38.16
+58,Canadian,Elementary,TRUE,TRUE,TRUE,M,TRUE,38.61
+29,Canadian,Elementary,TRUE,FALSE,FALSE,M,FALSE,38.24
+76,Non-Canadian,Elementary,FALSE,TRUE,FALSE,M,TRUE,38.66
+47,Non-Canadian,Elementary,FALSE,FALSE,FALSE,F,FALSE,35.16
+8,Canadian,High School,TRUE,FALSE,TRUE,F,FALSE,36.57
+77,Canadian,Elementary,FALSE,TRUE,TRUE,F,FALSE,35.89
+18,Canadian,High School,FALSE,FALSE,FALSE,F,FALSE,36.41
+55,Non-Canadian,Elementary,TRUE,FALSE,TRUE,M,TRUE,36.89
+21,Non-Canadian,High School,FALSE,FALSE,FALSE,F,TRUE,39.64
+74,Non-Canadian,University,TRUE,FALSE,FALSE,M,TRUE,35.04
+5,Non-Canadian,High School,TRUE,FALSE,FALSE,M,TRUE,39.40
+51,Non-Canadian,Elementary,TRUE,TRUE,FALSE,M,FALSE,36.14
+33,Non-Canadian,High School,TRUE,FALSE,TRUE,M,FALSE,37.23
+13,Canadian,Elementary,TRUE,FALSE,FALSE,F,FALSE,35.18
+75,Canadian,Elementary,TRUE,FALSE,FALSE,F,FALSE,36.98
+57,Canadian,University,TRUE,FALSE,TRUE,F,FALSE,37.48
+72,Canadian,High School,TRUE,TRUE,FALSE,F,FALSE,40.80
+65,Canadian,High School,TRUE,TRUE,FALSE,F,FALSE,37.69
+70,Canadian,High School,TRUE,TRUE,FALSE,M,TRUE,40.03
+23,Canadian,University,TRUE,FALSE,TRUE,F,FALSE,36.40
+16,Canadian,University,TRUE,FALSE,FALSE,M,TRUE,35.26
+15,Canadian,Elementary,TRUE,TRUE,TRUE,F,TRUE,36.13
+64,Canadian,Elementary,TRUE,TRUE,TRUE,M,TRUE,38.29
+30,Canadian,University,TRUE,TRUE,TRUE,F,TRUE,39.62
+73,Canadian,Elementary,TRUE,FALSE,TRUE,F,TRUE,38.25
+80,Canadian,Elementary,FALSE,TRUE,FALSE,F,FALSE,40.99
+15,Canadian,Elementary,FALSE,FALSE,TRUE,M,FALSE,40.19
+47,Canadian,High School,TRUE,TRUE,TRUE,M,FALSE,37.42
+53,Canadian,Elementary,FALSE,FALSE,TRUE,M,FALSE,39.55
+51,Canadian,University,TRUE,TRUE,TRUE,M,TRUE,38.81
+50,Canadian,Elementary,FALSE,TRUE,FALSE,M,FALSE,36.83
+45,Non-Canadian,University,FALSE,FALSE,FALSE,M,FALSE,35.81
+68,Non-Canadian,Elementary,TRUE,FALSE,TRUE,M,TRUE,39.43
+69,Non-Canadian,University,TRUE,FALSE,FALSE,F,TRUE,35.92
+74,Canadian,Elementary,FALSE,FALSE,TRUE,F,TRUE,40.37
+58,Non-Canadian,High School,FALSE,TRUE,FALSE,M,TRUE,35.90
+69,Non-Canadian,University,FALSE,TRUE,FALSE,F,TRUE,35.20
+57,Canadian,Elementary,TRUE,TRUE,TRUE,F,TRUE,39.36
+56,Non-Canadian,High School,TRUE,FALSE,FALSE,M,TRUE,37.74
+7,Non-Canadian,High School,TRUE,TRUE,FALSE,F,TRUE,39.86
+26,Canadian,Elementary,TRUE,FALSE,FALSE,F,TRUE,35.74
+26,Non-Canadian,University,FALSE,FALSE,FALSE,M,TRUE,35.22
+16,Canadian,High School,TRUE,FALSE,TRUE,F,FALSE,36.98
+67,Canadian,University,TRUE,FALSE,FALSE,M,FALSE,39.80
+31,Canadian,University,FALSE,TRUE,FALSE,M,TRUE,39.86
+8,Canadian,Elementary,FALSE,TRUE,TRUE,M,FALSE,39.42
+34,Canadian,Elementary,TRUE,TRUE,TRUE,F,FALSE,38.20
+75,Non-Canadian,University,FALSE,FALSE,TRUE,F,FALSE,38.29
+80,Canadian,High School,FALSE,FALSE,FALSE,F,TRUE,37.01
+70,Canadian,University,FALSE,TRUE,TRUE,F,TRUE,36.46
+55,Canadian,Elementary,TRUE,FALSE,TRUE,F,FALSE,36.85
+75,Canadian,University,FALSE,TRUE,TRUE,M,FALSE,37.36
+20,Canadian,University,TRUE,FALSE,TRUE,M,FALSE,38.96
+68,Canadian,University,TRUE,FALSE,TRUE,F,TRUE,40.60
+57,Canadian,Elementary,FALSE,TRUE,TRUE,F,TRUE,38.67
+45,Canadian,University,TRUE,FALSE,FALSE,M,FALSE,38.03
+6,Canadian,High School,FALSE,TRUE,TRUE,M,FALSE,40.63
+15,Non-Canadian,Elementary,TRUE,TRUE,FALSE,M,FALSE,39.50
+54,Non-Canadian,Elementary,TRUE,TRUE,TRUE,M,TRUE,35.13
+32,Non-Canadian,High School,TRUE,FALSE,FALSE,M,FALSE,35.24
+33,Non-Canadian,High School,FALSE,TRUE,FALSE,M,FALSE,39.66
+62,Non-Canadian,High School,TRUE,FALSE,FALSE,M,TRUE,35.80
+61,Canadian,High School,FALSE,TRUE,TRUE,M,FALSE,40.45
+7,Canadian,University,TRUE,FALSE,FALSE,F,FALSE,36.20
+44,Canadian,Elementary,FALSE,TRUE,FALSE,F,TRUE,38.89
+70,Canadian,High School,TRUE,FALSE,FALSE,M,TRUE,35.02
+60,Canadian,University,TRUE,TRUE,FALSE,M,TRUE,38.04
+31,Canadian,Elementary,FALSE,TRUE,FALSE,F,FALSE,40.36
+40,Canadian,University,FALSE,TRUE,FALSE,F,FALSE,37.04
+13,Canadian,Elementary,FALSE,FALSE,TRUE,F,FALSE,40.72
+51,Canadian,Elementary,TRUE,TRUE,TRUE,F,TRUE,35.64
+39,Canadian,University,FALSE,FALSE,FALSE,M,FALSE,39.11
+68,Canadian,University,FALSE,FALSE,FALSE,M,FALSE,40.04
+75,Canadian,University,TRUE,TRUE,FALSE,F,TRUE,39.46

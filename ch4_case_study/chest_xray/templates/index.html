@@ -1,0 +1,20 @@
+<!doctype html>
+<head>
+<title>X-Ray Pneumonia Classification Demo</title>
+</head>
+<body>
+<h1>Upload X-Ray Images</h1>
+<form method='post' enctype='multipart/form-data'>
+    <input type='file' name='file'>
+    <input type='submit' value='Upload'>
+</form>
+{% if error %}
+    Error: {{error}}
+{% endif %}
+{% if path %}
+    <img src={{path}} style="width: 500px"/>
+    <div>
+        Result: {{result}}
+    </div>
+{% endif %}
+</body>
