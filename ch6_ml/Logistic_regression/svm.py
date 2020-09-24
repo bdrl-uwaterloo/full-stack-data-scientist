@@ -19,8 +19,6 @@ y = winedata.target
 classes = list(winedata.target_names)
 feature_names = winedata.feature_names
 
-
-# %%
 x_train, x_test, y_train, y_test = train_test_split(X,y, random_state =1)
 
 

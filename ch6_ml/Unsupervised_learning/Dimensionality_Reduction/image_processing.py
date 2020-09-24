@@ -184,7 +184,7 @@ print(label)
 # ### Image compression using K-Means can be easy. 
 
 # %%
-Your_Image_Path = 'C://Users//rache//Downloads//dsbook//fig//vex.PNG'
+Your_Image_Path = '../Data/vex.PNG'
 from tensorflow.keras.preprocessing.image import load_img,img_to_array
 img = load_img(Your_Image_Path)
 print(img.mode) # RGB color channels 

@@ -31,14 +31,11 @@ obs.legend()
 plt.show()
 
 
-# The indepednent varibale is first and third columns of Cig_data
+# 自变量是Cig_data的第一和第三列
 X = Cigdata.iloc[:,[0,2]].values
-# Split into the Training set and Test set
-from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size = 0.2, random_state = 0)
 
-
-# Training the Multiple Linear Regression model on the Training set using Sklearn
+# 使用Sklearn在训练集上训练多元线性回归模型
 multiLinearregressor = LinearRegression()
 multiLinearregressor.fit(X_train, y_train)
 print(multiLinearregressor.intercept_, multiLinearregressor.coef_)
@@ -50,14 +47,14 @@ delta = multiLinearregressor.coef_[1]
 Yhat = alpha + beta*X_1+ delta*X_2
 print(Yhat)
 
-# create a wiremesh for the plane that the predicted values will lie
+# 创建预测值所在的平面
 x1 = np.arange(min(X_1), max(X_1),0.1)
 x2 = np.arange(min(X_2), max(X_2),0.1)
 X,Y = np.meshgrid(x1,x2)
 Zhat = alpha + beta*X+ delta*Y
 
 Z = Cigdata.iloc[:, 1].values
-# Predicting the Test set results
+# 预测测试集结果
 fig2 = plt.figure(2)
 pred = fig2.add_subplot(111, projection='3d')
 pred.plot_surface(X, Y, Zhat, color='darkgreen')
@@ -70,9 +67,9 @@ plt.show()
 
 # SGD Regressor----------------------------------------
 import numpy as np
-from sklearn.linear_model import SGDRegressor
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import SGDRegressor
 sgd = make_pipeline(StandardScaler(),
                     SGDRegressor(max_iter=1000, tol=1e-3))
 

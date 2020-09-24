@@ -9,7 +9,7 @@ from sklearn.metrics import accuracy_score
 df = pd.read_csv('datasets_heart.csv')
 
 sns.countplot(x='sex',data=df,palette="muted")
-plt.xlabel(" Woma / Man")
+plt.xlabel(" Woman / Man")
 
 sns.countplot(hue='sex',x='target', data=df,palette="muted")
 plt.legend(labels=['Female', 'Male'])
