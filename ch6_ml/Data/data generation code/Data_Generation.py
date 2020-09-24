@@ -16,7 +16,7 @@ Cig_Data = pd.DataFrame(data_linreg, columns = [ 'Father cigaratte consumption p
 Cig_Data[Cig_Data < 0] = 0
 Cig_Data.head()
 import os
-os.chdir('C:\\Users\\rache\\Downloads\\dsbook\\AppendixML_Code_Data\\Cig_Data')
+os.chdir('../full-stack-data-scientist/ch6_ml/Data')
 print (os.getcwd())
 Cig_Data.to_csv('cig_data.csv',index=False)
 # Create Cig_data for regression --------------

@@ -10,8 +10,11 @@ import matplotlib.pyplot as plt
 # import functions and classes from Sklearn.py
 import sys
 
-sys.path.append('\\Users\\rachelzeng\\dsbook\\code\\python_appendix')  
-print(sys.path)
+sys.path.append('../../full-stack-data-scientist/ch5_python/python_appendix')  
+
+
+# %%
+os.chdir('/Users/rachelzeng/full-stack-data-scientist/ch6_ml/Random_Forest')
 
 
 # %%
@@ -21,7 +24,7 @@ print(sys.path)
 from Sklearn_tutorial import data_loader, target_transformation, Attribute_pip
 
 import pandas as pd
-os.chdir('/Users/rachelzeng/dsbook')
+os.chdir('../../ch6_ml')
 Data_Path =os.path.join ('Data')
 data_name = 'COVID_19.csv'
 COVID = data_loader (data_path=Data_Path, data= data_name)
@@ -29,6 +32,10 @@ COVID = data_loader (data_path=Data_Path, data= data_name)
 
 # %%
 COVID.info()
+
+
+# %%
+COVID['Temperature']= pd.to_numeric(COVID.Temperature, errors='coerce')
 
 
 # %%
@@ -56,11 +63,7 @@ Train_Data.info()
 
 # %%
 # Preprocessing 
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from Sklearn_tutorial import data_loader, target_transformation, Attribute_pip
-
+# Get rid of the null values
 null_train = Train_Data.loc[pd.isnull(Train_Data).any(axis = 1),:].index.values
 Train_Data = Train_Data.drop(null_train)
 null_test = Test_Data.loc[pd.isnull(Test_Data).any(axis = 1),:].index.values
@@ -68,22 +71,38 @@ Test_Data = Test_Data.drop(null_test)
 target_train= target_train.drop(null_train)
 target_test = target_test.drop(null_test)
 
+
+# %%
+print(Test_Data.head())
+print(Train_Data.info())
+
+
+# %%
+from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+
+
 Trained_transformed = Attribute_pip (Train_Data)
-Tested_transformed = Attribute_pip (Test_ßData)
+Tested_transformed = Attribute_pip (Test_Data)
+
 target_train = target_transformation (target_train)
 target_test = target_transformation (target_test)
 print(target_train)
-print(Trained_transformed)
+
+
+# %%
+list(Train_Data.select_dtypes(include=['number']).columns)
 
 
 # %%
 col_name = ['Age','Temperature', 'Sex-M', 'Sex-F', 'Residency Status-C ','Residency Status-NC', 'Travel Y', 'Travel N', 'Close contact Y', 'Close contact N' ,'Dry Cough-Y','Dry Cough- N']
-print(Trained_transformed[1])
 
 
 # %%
 
-
+# Decision Tree 
+from sklearn import tree
 from sklearn.tree import DecisionTreeClassifier
 Single_tree = DecisionTreeClassifier(criterion = 'entropy',random_state= 1).fit(Trained_transformed,target_train)
 print(Single_tree)
@@ -204,6 +223,8 @@ ax.plot(ccp_alphas, test_scores, marker='o', label="test",
 ax.legend()
 plt.show()
 
+
+# %%
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 
@@ -215,28 +236,29 @@ plt.xlabel('Scaled - Age')
 plt.ylabel('Scaled -Temperature')
 plt.show()
 
+
 # %%
 A_tree = DecisionTreeClassifier(criterion = 'entropy',random_state= 1).fit(Trained_transformed[:,[1,2]],target_train)
 tree_prediction = A_tree.predict(Tested_transformed[:,[1,2]])
 
+
+# %%
 from sklearn.ensemble import BaggingClassifier
 from sklearn.tree import DecisionTreeClassifier
-bag_clf =  BaggingClassifier(DecisionTreeClassifier(), n_estimators= 300, max_samples= 0.6, bootstrap= True, n_jobs = -1 )
-bag_classifier = bag_clf.fit(Trained_transformed, target_train )
-ensemble_prediction = bag_classifier.predict(Tested_transformed)
+
+bag_clf =  BaggingClassifier(DecisionTreeClassifier(), n_estimators= 300, max_samples= 0.8, bootstrap= True, n_jobs = -1 , random_state=12)
+bag_classifier = bag_clf.fit(Trained_transformed[:,[1,2]], target_train )
+ensemble_prediction = bag_classifier.predict(Tested_transformed[:,[1,2]])
 print(accuracy_score(target_test, tree_prediction))
-print(accuracy_score(target_test, ensemble_prediction)}
+print(accuracy_score(target_test, ensemble_prediction))
+
 
 # %%
 # Random Forest Classifier 
 from sklearn.ensemble import RandomForestClassifier
-rand_clf = RandomForestClassifier(n_estimators= 300, max_leaf_nodes=20, n_jobs=-1 )
+rand_clf = RandomForestClassifier(n_estimators= 300, max_leaf_nodes=20, n_jobs=-1 ,random_state=12)
 forest_classifier = rand_clf.fit(Trained_transformed, target_train )
 ensemble_prediction_forest = forest_classifier.predict(Tested_transformed)
 accuracy_score(target_test, ensemble_prediction_forest)
-
-
-# %%
-
 
 

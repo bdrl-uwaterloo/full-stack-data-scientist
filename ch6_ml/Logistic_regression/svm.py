@@ -13,9 +13,11 @@ import matplotlib.pyplot as plt
 # %%
 winedata = load_wine()
 X = winedata['data']
-X = X[:, [6,9]]
+fea_index =[6,9]
+X = X[:, fea_index]
 y = winedata.target
 classes = list(winedata.target_names)
+feature_names = winedata.feature_names
 
 
 # %%
@@ -61,8 +63,13 @@ plt.pcolormesh(x_grid, y_grid, Z, cmap= mcolors.ListedColormap(backcolors))
 classes = ['Class 0 wine', 'Class 1 wine', 'Class 2 wine']
 colors = [ 'forestgreen','slateblue', 'goldenrod']
 scatter = plt.scatter(feature_1, feature_2, c= y, cmap = mcolors.ListedColormap(colors))
-plt.xlabel('flavanoids')
-plt.ylabel('color_intensity')
+plt.xlabel(feature_names[fea_index[0]])
+plt.ylabel(feature_names[fea_index[1]])
 plt.legend(handles=scatter.legend_elements()[0], labels=classes)
 plt.show()
+
+
+# %%
+
+
 

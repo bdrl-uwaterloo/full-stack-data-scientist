@@ -16,7 +16,7 @@ from tensorflow.keras import layers
 
 #Set dir-----------------------------------------
 import os
-os.chdir('C:\\Users\\rache\\Downloads\\dsbook\\AppendixML_Code_Data\\Cig_Data')
+os.chdir('../full-stack-data-scientist/ch6_ml/Data')
 print (os.getcwd())
 
 #import data using Pandas-----------------------------------------
