@@ -37,11 +37,11 @@ def data_loader (data_path, data):
 ## Next we will walk you through preprocessing using one of our dataset, COVID_19.csv, and use head(10) to see the first 10 rows in the dataset.
 
 #import data-----------------------------------------
-os.chdir('/Users/rachelzeng/dsbook')
+os.chdir('../../Data')
 
 import pandas as pd
 Data_Path =os.path.join ('Data')
-data_name = 'COVID_19.csv'
+data_name = 'COVID_19_preprocess.csv'
 COVID = data_loader (data_path=Data_Path, data= data_name)
 
 
