@@ -1,17 +1,20 @@
-#Sklearn Modeling Procedure
+# To add a new cell, type '# %%'
+# To add a new markdown cell, type '# %% [markdown]'
+# %% [markdown]
+# # Sklearn Modeling Procedure
+# ### Scikit-learn requries Python >=3.6
+# ## Step 1: Data import 
+# ### You can load the data from sklearn.datasets API. The dataset loader is for small and Toy dataset, while the dataset fetcher is for huge and Real World dataset. Here are the examples to load small data and fetch large data. 
 
-# Step 1: Data import 
-
-# if you want to import data from sklearn.datasets API
-#   Dataset loader for small and Toy standard datasets
-#   Dataset fetchers for large Real World datasets
-# Or you can generate your own dataset, please see Data_Generation.py
-
+# %%
 from sklearn import datasets
 iris = datasets.load_iris()  
 faces = datasets.fetch_olivetti_faces()
 
-# Data Fetching, unzip
+# %% [markdown]
+# ### We can also have a function to download the data, this is to keep tack of the up-to-date data and allows for automation of dara fetching process. Below presented the code to fetch zip file from web and extract all .csv files to your working directory.
+
+# %%
 import os
 from zipfile import ZipFile
 import urllib
@@ -24,30 +27,35 @@ def fetch_Data (url = url_download, Path =Data_Path):
     os.makedirs(Path, exist_ok=True)
     zip_path = os.path.join (Path, 'Dataset.zip')
     filepath, _ = urllib.request.urlretrieve(url, zip_path)
-    with ZipFile(filepath, 'r') as zip:
+    with zipfile.ZipFile(filepath, 'r') as zip:
         zip.extractall(Path)
 
-# Let us write a function to load our data.
+# %% [markdown]
+# #### Once we have dataset downloaded, let us write a function to load our data.
+
+# %%
 import pandas as pd 
+
 def data_loader (data_path, data):
     csv_path = os.path.join (data_path, data)
     return pd.read_csv(csv_path)
 
+# %% [markdown]
+# #### Next I will walk you through preprocessing using one of our dataset, COVID_19.csv, and use head(10) to see the first 10 rows in the dataset. 
 
-## Next we will walk you through preprocessing using one of our dataset, COVID_19.csv, and use head(10) to see the first 10 rows in the dataset.
-
-#import data-----------------------------------------
-os.chdir('/Users/rachelzeng/dsbook')
+# %%
+os.chdir('/Users/rachelzeng/full-stack-data-scientist/ch5_python')
 
 import pandas as pd
 Data_Path =os.path.join ('Data')
-data_name = 'COVID_19.csv'
+data_name = 'COVID_19_preprocess.csv'
 COVID = data_loader (data_path=Data_Path, data= data_name)
-
+COVID_copy = COVID.copy()
+COVID.head(10)
 
 #Suppose we are interested in predicting whether a suspected patient is infected with COVID 19. In order to make a robust model, we need to ensure our model can perform well on the new data. Assume we have a set of data, then this set should be divided into training and testing data, training data is what need to be fed into and testing data is what the model has not seen, and needed to be tested. We will talk more about it in Appendix for Machine Learning
 
-target_name = 'COVID_19?'
+target_name = 'COVID?'
 target = COVID.pop (target_name)
 # Split Training and Testing data
 from sklearn.model_selection import train_test_split
@@ -67,9 +75,9 @@ import numpy as np
 from sklearn.impute import SimpleImputer
 
 Mean_imp = SimpleImputer(missing_values= np.nan, strategy = 'mean')
-COVID['Temperature'] = Mean_imp.fit_transform (COVID['Temperature'].values.reshape(-1,1)) 
+COVID['tmp'] = Mean_imp.fit_transform (COVID['tmp'].values.reshape(-1,1)) 
 # .reshape(1,-1) indicate transform to array with 1 row, and do not care about how many column. 
-COVID[COVID['Temperature'].isnull()] 
+COVID[COVID['tmp'].isnull()] 
 
 # Find index of rows with missing values
 row_null = COVID.loc[pd.isnull(COVID).any(axis = 1),:].index.values
@@ -77,8 +85,8 @@ COVID = COVID.drop(row_null)
 
 
 # Attributes data type
-COVID[['Travel?', 'Close contact', 'Dry Cough']] = COVID[['Travel?', 'Close contact', 'Dry Cough']].astype('bool')
-COVID[['Residency Status', 'Sex']] = COVID[['Residency Status','Sex']].astype('category')
+COVID[['Travel?', 'CC', 'DC']] = COVID[['Travel?', 'CC', 'DC']].astype('bool')
+COVID[['RS',  'Sex']] = COVID[['RS', 'Sex']].astype('category')
 Bool_attribute = list(list(COVID.select_dtypes(include=['bool']).columns))
 Num_attribute = list(COVID.select_dtypes(include=['number']).columns)
 Cat_attribute = list(COVID.select_dtypes(include=['category']).columns)
@@ -89,16 +97,16 @@ Bool_attribute, Num_attribute,Cat_attribute
 from sklearn.preprocessing import LabelEncoder
 
 label_enc = LabelEncoder()
-label_encoded = label_enc.fit_transform(COVID['Residency Status'])
+label_encoded = label_enc.fit_transform(COVID['RS'])
 
-RS_col = pd.get_dummies(COVID['Residency Status'], prefix='Residency Status')
+RS_col = pd.get_dummies(COVID['RS'], prefix='RS')
 COVID_1 = pd.concat([COVID, RS_col],axis=1)
-COVID_1.drop(['Residency Status'], axis =1, inplace = True)
+COVID_1.drop(['RS'], axis =1, inplace = True)
 print(COVID_1.head() )
 
 
 # Method 2：Using Sklearn Preprocessing
-Resident_cat = COVID[['Residency Status']]
+Resident_cat = COVID[['RS']]
 
 from sklearn.preprocessing import OneHotEncoder
 OH_enc = OneHotEncoder()
@@ -190,8 +198,6 @@ list(Train_Data.select_dtypes(include=['object','bool' ]).columns)
 
 Trained_transformed = Attribute_pip (Train_Data)
 Tested_transformed = Attribute_pip (Test_Data)
-Trained_transformed
-
 
 # Modeling
 
@@ -201,20 +207,20 @@ from sklearn.metrics import classification_report
 
 classification = LogisticRegression(solver = 'lbfgs' , multi_class= 'multinomial')
 classification.fit(Trained_transformed, target_train)
-predict = classification.predict(Tested_transformed)
-print(classification_report(target_test, predict))
+#predict = classification.predict(Tested_transformed)
+#print(classification_report(target_test, predict))
 
 
 # Save Model
-os.chdir('/Users/rachelzeng/dsbook/Saved_models')
+#os.chdir('/Users/rachelzeng/dsbook/Saved_models')
 import joblib
-joblib.dump (classification, 'sk_classification.pkl')
+#joblib.dump (classification, 'sk_classification.pkl')
 
 # Reuse Model 
-Reuse_clf = joblib.load ( 'sk_classification.pkl' )
+#Reuse_clf = joblib.load ( 'sk_classification.pkl' )
 
 # print the score:
-score = Reuse_clf.score(Tested_transformed,target_test)
-print("The test score is {0:.2f} %".format(100 * score))
+#score = Reuse_clf.score(Tested_transformed,target_test)
+#print("The test score is {0:.2f} %".format(100 * score))
 
 #Not suprisingly, using Logistic Regression with all attribute columns resulted in poor rate of predictive score. We will revisit this problem in Machine Learning section with additional knowledge on the subject of classification and random sampling, such as feature selections, bootstraping and implement random forest classifier to improve the prediction accuracy.
