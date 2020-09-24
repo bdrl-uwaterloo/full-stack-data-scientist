@@ -24,13 +24,13 @@ def LASSO_index(X, y):
     features_index = (-shrinking).argsort()[:2]
     return (features_index)
 
-fea_index = LASSO_index(X_data, y_data)
+
 
 ########Plot##############################################################
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 
-
+fea_index = LASSO_index(X_data, y_data)
 X = X_data[:, fea_index]
 feature_1 =  X[:,0] # 类黄酮
 feature_2 = X[:,1] # 颜色强度

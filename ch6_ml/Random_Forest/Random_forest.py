@@ -1,9 +1,7 @@
-# To add a new cell, type '# %%'
-# To add a new markdown cell, type '# %% [markdown]'
-# %%
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import ColumnTransformer
+from sklearn.pipline import Pipeline
 import numpy as np
 import matplotlib.pyplot as plt 
 
@@ -11,7 +9,7 @@ import matplotlib.pyplot as plt
 import sys
 
 sys.path.append('../../full-stack-data-scientist/ch5_python/python_appendix')  
-
+from Sklearn_tutorial import data_loader, target_transformation, Attribute_pip
 
 # %%
 os.chdir('/Users/rachelzeng/full-stack-data-scientist/ch6_ml/Random_Forest')
@@ -19,47 +17,26 @@ os.chdir('/Users/rachelzeng/full-stack-data-scientist/ch6_ml/Random_Forest')
 
 # %%
 import os 
-
-print(sys.path)
-from Sklearn_tutorial import data_loader, target_transformation, Attribute_pip
-
 import pandas as pd
 os.chdir('../../ch6_ml')
 Data_Path =os.path.join ('Data')
 data_name = 'COVID_19.csv'
 COVID = data_loader (data_path=Data_Path, data= data_name)
 
-
-# %%
-COVID.info()
-
-
-# %%
-COVID['Temperature']= pd.to_numeric(COVID.Temperature, errors='coerce')
-
-
-# %%
-print(COVID.head())
-
-
-# %%
-
-target_name = 'COVID_19?'
 Irrelavent = COVID.pop ('ID')
+target_name = 'COVID_19?'
 target = COVID.pop (target_name)
 
 COVID[['Travel?', 'Close contact', 'Dry Cough']] = COVID[['Travel?', 'Close contact', 'Dry Cough']].astype('bool')
-
+COVID['Temperature']= pd.to_numeric(COVID.Temperature, errors='coerce')
 COVID[['Residency Status',  'Sex']] = COVID[['Residency Status', 'Sex']].astype('category')
 
 
 # %%
 # Split Training and Testing data
 from sklearn.model_selection import train_test_split
-
 Train_Data, Test_Data, target_train, target_test  = train_test_split(COVID,target,test_size=0.2, random_state= 1,stratify=target)
 Train_Data.info()
-
 
 # %%
 # Preprocessing 
@@ -71,35 +48,12 @@ Test_Data = Test_Data.drop(null_test)
 target_train= target_train.drop(null_train)
 target_test = target_test.drop(null_test)
 
-
-# %%
-print(Test_Data.head())
-print(Train_Data.info())
-
-
-# %%
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-
-
 Trained_transformed = Attribute_pip (Train_Data)
 Tested_transformed = Attribute_pip (Test_Data)
-
 target_train = target_transformation (target_train)
 target_test = target_transformation (target_test)
 print(target_train)
 
-
-# %%
-list(Train_Data.select_dtypes(include=['number']).columns)
-
-
-# %%
-col_name = ['Age','Temperature', 'Sex-M', 'Sex-F', 'Residency Status-C ','Residency Status-NC', 'Travel Y', 'Travel N', 'Close contact Y', 'Close contact N' ,'Dry Cough-Y','Dry Cough- N']
-
-
-# %%
 
 # Decision Tree 
 from sklearn import tree
@@ -244,8 +198,6 @@ tree_prediction = A_tree.predict(Tested_transformed[:,[1,2]])
 
 # %%
 from sklearn.ensemble import BaggingClassifier
-from sklearn.tree import DecisionTreeClassifier
-
 bag_clf =  BaggingClassifier(DecisionTreeClassifier(), n_estimators= 300, max_samples= 0.8, bootstrap= True, n_jobs = -1 , random_state=12)
 bag_classifier = bag_clf.fit(Trained_transformed[:,[1,2]], target_train )
 ensemble_prediction = bag_classifier.predict(Tested_transformed[:,[1,2]])

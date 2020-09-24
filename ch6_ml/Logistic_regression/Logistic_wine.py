@@ -9,7 +9,6 @@ y=sigmoid(x)
 plt.plot(x,y,'b')
 plt.title('Sigmoid Function plot')
 plt.show()
-
 # Binary Classifers 
 from sklearn.linear_model import LogisticRegression
 from sklearn.datasets import load_wine

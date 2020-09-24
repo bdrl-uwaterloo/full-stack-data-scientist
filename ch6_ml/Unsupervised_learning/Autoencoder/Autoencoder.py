@@ -80,8 +80,8 @@ auto_encoder.summary()
 
 
 # %%
-
 def train_images ():
+    
     image_data_generator = preprocessing.image.ImageDataGenerator(rescale=1./255,dtype='float32')
     train_data_gen = image_data_generator.flow_from_directory(directory=data_dir, target_size = (28,28),shuffle=True,
                                                               classes = list(class_name))
