@@ -11,24 +11,24 @@ from sklearn import datasets
 iris = datasets.load_iris()  
 faces = datasets.fetch_olivetti_faces()
 
-# %% [markdown]
-# ### We can also have a function to download the data, this is to keep tack of the up-to-date data and allows for automation of dara fetching process. Below presented the code to fetch zip file from web and extract all .csv files to your working directory.
+ 
+ 
 
 # %%
 import os
-from zipfile import ZipFile
-import urllib
+ 
+ import urllib
 
-Root_Download = './master/..'
-url_download = Root_Download +'Data.zip'
-Data_Path = os.path.join ('Data')
+Root_Download = 'https://github.com/bdrl-uwaterloo/full-stack-data-scientist'
+url_download = Root_Download +'Data'
+ 
 
-def fetch_Data (url = url_download, Path =Data_Path):
-    os.makedirs(Path, exist_ok=True)
-    zip_path = os.path.join (Path, 'Dataset.zip')
-    filepath, _ = urllib.request.urlretrieve(url, zip_path)
-    with zipfile.ZipFile(filepath, 'r') as zip:
-        zip.extractall(Path)
+def fetch_Data (url = url_download, data_name ):
+     df = pd.read_csv(url+data_name, error_bad_lines=False)
+     return df
+     
+     
+     
 
 # %% [markdown]
 # #### Once we have dataset downloaded, let us write a function to load our data.
