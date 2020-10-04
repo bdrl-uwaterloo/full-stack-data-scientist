@@ -105,7 +105,7 @@ def merged_train(outputpath,pathsave):
 # train model (keras) -----------------------------------------------------------------------------------------------------
 def class_model(total_num_features,hidden_dim,encode_dim,epochs,pathsave,features,label):
     std_scaler=preprocessing.StandardScaler().fit(features)
-    features_nm=std_scaler.transform(features)
+    features_nm=std_scaler.transform(features) 
     print("save scaler")
     f = open(pathsave + "train_merged_scaler.pickle", "wb")
     pickle.dump(std_scaler, f)
