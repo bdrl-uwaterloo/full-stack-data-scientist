@@ -84,7 +84,7 @@ class chest_xray_classifier_trainer(chest_xray_classifier):
 
     # build a CNN model, which has 3 (convolutional layers + max pooling layers) as feature extractors
     # and a fully connected layer in then end as the classifier
-    # TODO: add a picture to illustrate the network structure 
+   
     def train_cnn(self):
         model = Sequential() 
 
@@ -125,8 +125,8 @@ class chest_xray_classifier_trainer(chest_xray_classifier):
 
         # use ImageDataGenerator to prepare our training data
         # ImageDataGenerator is a great tool to augment our training data
-        # [TODO] add image examples on what this tool can do, such as zoom, shear, rotate, shift. 
-        train_datagen = ImageDataGenerator( 
+ 
+         train_datagen = ImageDataGenerator( 
             # image data has values in the range of [0, 255]. rescale the image data to 0-1
             rescale = 1. / 255, 
             
