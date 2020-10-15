@@ -1,0 +1,20 @@
+<!doctype html>
+<h1><strong><span style="color: #003366;">BDRL 加州房價預測中心(Demo)</span></strong></h1>
+<hr/>
+<p><span style="color: #000000;"><b>請上傳房屋信息：</b></span></p>
+<form method="post" enctype="multipart/form-data">
+	<input type="file" name="file" /> 
+	<input type="submit" value="Upload" />
+</form>
+ <img src={{path}} style="width: 100px"/>
+<p><span style="color: #800000;">* 請選擇data文件夾中的test_set.csv文件</span></p>
+<p><span style="color: #0000001;"><b></b></span></p>
+<h4><span style="color: #008080;">結果返回:</span></h4>
+{% if error %}
+    Error: {{error}}
+{% endif %}
+{% for item in result_lst %}	
+<li> {{item}} </li>
+{%endfor%}
+
+</body>
